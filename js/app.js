@@ -3,8 +3,16 @@
 // Configuration
 const config = {
     weatherApiKey: 'YOUR_OPENWEATHER_API_KEY', // Replace with actual API key
-    mapApiKey: 'YOUR_GOOGLE_MAPS_API_KEY',     // Replace with actual API key
-    weatherApiEndpoint: 'https://api.openweathermap.org/data/2.5/weather'
+    eventDetails: {
+        title: "Beach Cleanup at Pasir Ris",
+        date: "June 8, 2025",
+        time: "8:00 AM - 11:00 AM",
+        location: "Pasir Ris Park Car Park D",
+        coordinates: {
+            lat: 1.381497,
+            lng: 103.955574
+        }
+    }
 };
 
 // State management
@@ -26,6 +34,7 @@ async function initializeApp() {
     initializeWeatherWidget();
     initializeMap();
     setupEventListeners();
+    setupEventButtons();
 }
 
 // Geolocation
@@ -161,6 +170,53 @@ function setupEventListeners() {
                 });
             }
         });
+    }
+}
+
+// Event Handlers
+function setupEventButtons() {
+    const registerButton = document.querySelector('.register-button');
+    const shareButton = document.querySelector('.share-button');
+
+    if (registerButton) {
+        registerButton.addEventListener('click', handleRegistration);
+    }
+
+    if (shareButton) {
+        shareButton.addEventListener('click', handleShare);
+    }
+}
+
+function handleRegistration() {
+    // In a real app, this would open a registration form or modal
+    const message = `Thank you for your interest in joining the cleanup!\n\n` +
+                   `Event: ${config.eventDetails.title}\n` +
+                   `Date: ${config.eventDetails.date}\n` +
+                   `Time: ${config.eventDetails.time}\n` +
+                   `Location: ${config.eventDetails.location}`;
+    
+    alert(message);
+}
+
+async function handleShare() {
+    const shareData = {
+        title: config.eventDetails.title,
+        text: `Join us for a beach cleanup!\n` +
+              `Date: ${config.eventDetails.date}\n` +
+              `Time: ${config.eventDetails.time}\n` +
+              `Location: ${config.eventDetails.location}`,
+        url: window.location.href
+    };
+
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+        } else {
+            // Fallback for browsers that don't support the Web Share API
+            alert('Share this event:\n\n' + shareData.text);
+        }
+    } catch (err) {
+        console.error('Error sharing:', err);
     }
 }
 

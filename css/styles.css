@@ -98,6 +98,79 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
+/* Map Container Styles */
+.map-container {
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Upcoming Events Section */
+#upcoming-events {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 4rem; /* Space for fixed footer */
+}
+
+#upcoming-events h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text);
+    font-size: 2.2rem;
+}
+
+.event-details {
+    background-color: var(--secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.event-details p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.event-details strong {
+    color: var(--text);
+}
+
+.event-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.register-button, .share-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-button {
+    background-color: var(--accent);
+    color: var(--text);
+}
+
+.share-button {
+    background-color: var(--secondary);
+    color: var(--text);
+}
+
+.register-button:hover, .share-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 /* Footer */
 footer {
     background-color: var(--primary);
@@ -124,5 +197,13 @@ footer {
 
     #hero h2 {
         font-size: 2rem;
+    }
+
+    .event-actions {
+        flex-direction: column;
+    }
+    
+    .register-button, .share-button {
+        width: 100%;
     }
 }
